@@ -18,7 +18,7 @@ const C = {
 const DISPLAY = "'Cinzel', serif";
 const BODY    = "'Nunito', sans-serif";
 const LOGO_F  = "'Orbitron', sans-serif";
-const LINKS   = ["home","about","education","skills","projects","journal","career","contact"];//jkj
+const LINKS   = ["home","about","education","skills","projects","journal","career","contact"];
 const LCOLS   = [C.cyan,C.pink,C.violet,C.amber,C.green,C.blue,C.pink,C.cyan];
 
 /* ── Global CSS ─────────────────────────────── */
