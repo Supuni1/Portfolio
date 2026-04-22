@@ -679,7 +679,7 @@ function Hero() {
     "QA Enthusiast",
     "Web Developer Trainee",
     "IT Undergraduate",
-    "Future QA Engineer",
+    
   ];
   const [ri, setRi] = useState(0);
   const [imgErr, setImgErr] = useState(false);
