@@ -940,11 +940,11 @@ function About() {
   const infos = [
     { k: "Full Name", v: "W.M.P.G. Supuni Dilhara" },
     { k: "Date of Birth", v: "28 February 2001" },
-    { k: "Address", v: "Kap-ela, Kandalama, Dambulla" },
-    { k: "Phone", v: "+94 71 737 3138" },
+    { k: "Address", v: "Dambulla" },
+    { k: "Phone", v: "+94 74 386 6430" },
     { k: "Email", v: "supunidilhara1@gmail.com" },
     { k: "Languages", v: "Sinhala · English" },
-    { k: "Reg. No.", v: "IT22169044" },
+  
   ];
 
   return (
@@ -1665,7 +1665,7 @@ function Career() {
 
 function Contact() {
   const contacts = [
-    { icon: "📞", value: "+94 71 737 3138", color: C.cyan, href: "tel:+94717373138" },
+    { icon: "📞", value: "+94 74 386 6430", color: C.cyan, href: "tel:+94743866430" },
     {
       icon: "✉️",
       value: "supunidilhara1@gmail.com",
