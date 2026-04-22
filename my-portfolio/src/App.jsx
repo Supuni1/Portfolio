@@ -1468,6 +1468,14 @@ function Projects() {
       desc: "Created a billing and record management solution for grocery operations with efficient data handling.",
       color: C.pink,
     },
+
+     {
+      n: "08",
+      name: "Eco Engineers Company Website",
+      tech: ["HTML", "CSS", "PHP"],
+      desc: "Developed a company website for Eco Engineers to present business information, services, and a professional online presence.",
+      color: C.green,
+    },
   ];
 
   return (
