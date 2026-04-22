@@ -1282,6 +1282,7 @@ function Skills() {
         "Test Case Writing",
         "Bug Reporting",
         "SDLC",
+        "STLC",
         "Agile Basics",
       ],
     },
