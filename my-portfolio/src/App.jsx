@@ -17,6 +17,7 @@ const C = {
 const DISPLAY = "'Cinzel', serif";
 const BODY = "'Nunito', sans-serif";
 const LOGO_F = "'Orbitron', sans-serif";
+
 const LINKS = [
   "home",
   "about",
@@ -24,10 +25,10 @@ const LINKS = [
   "education",
   "skills",
   "projects",
-  "journal",
   "career",
   "contact",
 ];
+
 const LCOLS = [
   C.cyan,
   C.pink,
@@ -50,12 +51,7 @@ function GlobalStyles() {
       @keyframes pulse { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.15)} }
       @keyframes spinRing { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
       @keyframes glow { 0%,100%{box-shadow:0 0 22px ${C.cyan}44,0 0 60px ${C.cyan}22} 50%{box-shadow:0 0 55px ${C.cyan}99,0 0 110px ${C.cyan}44} }
-      @keyframes floatA { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-18px) rotate(2deg)} }
-      @keyframes floatB { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-10px) rotate(-2deg)} }
       @keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
-      @keyframes rotate3d { 0%{transform:rotateX(0deg) rotateY(0deg)} 100%{transform:rotateX(360deg) rotateY(360deg)} }
-      @keyframes float3d { 0%,100%{transform:translateZ(0) rotateX(0deg)} 50%{transform:translateZ(20px) rotateX(5deg)} }
-      @keyframes glow3d { 0%,100%{filter:drop-shadow(0 0 8px ${C.cyan}44)} 50%{filter:drop-shadow(0 0 20px ${C.cyan}88)} }
 
       *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
       html { scroll-behavior:smooth; }
@@ -176,7 +172,6 @@ function TiltCard({ children, color = C.cyan, style = {} }) {
   );
 }
 
-/* ── 3D Cursor ──────────────────────────────── */
 function Cursor3D() {
   const dotRef = useRef(null);
   const ringRef = useRef(null);
@@ -262,7 +257,6 @@ function Cursor3D() {
   );
 }
 
-/* ── 3D Background ──────────────────────────── */
 function Background3D() {
   const containerRef = useRef(null);
 
@@ -272,7 +266,6 @@ function Background3D() {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
 
-      containerRef.current.style.perspective = "1000px";
       const children = containerRef.current.querySelectorAll("[data-depth]");
       children.forEach((el) => {
         const depth = parseFloat(el.dataset.depth);
@@ -343,7 +336,6 @@ function Background3D() {
   );
 }
 
-/* ── 3D Particle Constellation Background ──────────── */
 function ParticleConstellation3D() {
   const canvasRef = useRef(null);
 
@@ -358,9 +350,7 @@ function ParticleConstellation3D() {
     const particles = [];
     const particleCount = 60;
     let mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
-    let time = 0;
 
-    // Particle class with 3D properties
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -375,16 +365,13 @@ function ParticleConstellation3D() {
         )[0];
         this.baseOpacity = Math.random() * 0.3 + 0.15;
         this.angle = Math.random() * Math.PI * 2;
-        this.orbitRadius = Math.random() * 100 + 50;
       }
 
       update(mouseX, mouseY) {
-        // Orbital movement
         this.angle += 0.001;
         this.x += Math.cos(this.angle) * 0.5;
         this.y += Math.sin(this.angle) * 0.5;
 
-        // Mouse attraction
         const dx = mouseX - this.x;
         const dy = mouseY - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
@@ -395,17 +382,14 @@ function ParticleConstellation3D() {
           this.vy += (dy / distance) * force;
         }
 
-        // Velocity damping
         this.vx *= 0.98;
         this.vy *= 0.98;
         this.vz *= 0.98;
 
-        // Apply velocity
         this.x += this.vx;
         this.y += this.vy;
         this.z += this.vz;
 
-        // Boundary wrapping
         if (this.x < -10) this.x = canvas.width + 10;
         if (this.x > canvas.width + 10) this.x = -10;
         if (this.y < -10) this.y = canvas.height + 10;
@@ -418,54 +402,39 @@ function ParticleConstellation3D() {
         const scale = 300 / (300 + this.z);
         const opacity = this.baseOpacity * scale;
 
-        ctx.fillStyle = this.color + Math.round(opacity * 255).toString(16).padStart(2, "0");
+        ctx.fillStyle =
+          this.color + Math.round(opacity * 255).toString(16).padStart(2, "0");
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size * scale, 0, Math.PI * 2);
         ctx.fill();
-
-        // Glow effect for closer particles
-        if (this.z < 100) {
-          ctx.strokeStyle = this.color + Math.round((opacity * 100)).toString(16).padStart(2, "0");
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
       }
     }
 
-    // Create particles
     for (let i = 0; i < particleCount; i++) {
       particles.push(new Particle());
     }
 
-    // Mouse tracking
     const handleMouseMove = (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Resize handler
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
     window.addEventListener("resize", handleResize);
 
-    // Animation loop
     const animate = () => {
-      // Clear with fade effect
       ctx.fillStyle = "rgba(3, 5, 13, 0.08)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      time += 0.01;
-
-      // Update particles
       particles.forEach((particle) => {
         particle.update(mouse.x, mouse.y);
         particle.draw();
       });
 
-      // Draw constellation lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -475,12 +444,11 @@ function ParticleConstellation3D() {
           if (distance < 120) {
             const scale1 = 300 / (300 + particles[i].z);
             const scale2 = 300 / (300 + particles[j].z);
-            const opacity = (1 - distance / 120) * 0.15 * (scale1 + scale2) * 0.5;
+            const opacity =
+              (1 - distance / 120) * 0.15 * (scale1 + scale2) * 0.5;
 
-            const colorIndex = [C.cyan, C.pink, C.violet].indexOf(particles[i].color);
-            const lineColor = [C.cyan, C.pink, C.violet][colorIndex];
-
-            ctx.strokeStyle = lineColor + Math.round(opacity * 255).toString(16).padStart(2, "0");
+            ctx.strokeStyle =
+              C.cyan + Math.round(opacity * 255).toString(16).padStart(2, "0");
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
@@ -634,6 +602,77 @@ function SectionHeader({ label, title, color = C.cyan }) {
   );
 }
 
+function SkillProgressBar({ name, percent, color }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setVisible(true);
+      },
+      { threshold: 0.3 }
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ marginBottom: "1rem" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          marginBottom: "0.45rem",
+        }}
+      >
+        <span
+          style={{
+            color: "#fff",
+            fontSize: "0.9rem",
+            fontFamily: BODY,
+            fontWeight: 600,
+          }}
+        >
+          {name}
+        </span>
+        <span
+          style={{
+            color,
+            fontSize: "0.85rem",
+            fontFamily: BODY,
+            fontWeight: 700,
+          }}
+        >
+          {percent}%
+        </span>
+      </div>
+
+      <div
+        style={{
+          width: "100%",
+          height: "10px",
+          borderRadius: "999px",
+          background: "rgba(255,255,255,0.08)",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            width: visible ? `${percent}%` : "0%",
+            height: "100%",
+            borderRadius: "999px",
+            background: `linear-gradient(90deg, ${color}, ${color}aa)`,
+            boxShadow: `0 0 16px ${color}66`,
+            transition: "width 1.2s ease",
+          }}
+        />
+      </div>
+    </div>
+  );
+}
+
 function Hero() {
   const [typed, setTyped] = useState("");
   const roles = [
@@ -731,7 +770,7 @@ function Hero() {
                 fontFamily: BODY,
               }}
             >
-              Open for QA Internship & Web Development Roles
+              Open for QA Internship 
             </span>
           </div>
 
@@ -1131,12 +1170,22 @@ function Education() {
     },
     {
       year: "Extra",
-      degree: "English Diploma — ICBT · NVQ Level 4",
-      school: "Information Technology",
-      detail: "Vocational Training Authority",
+      degree: "English Diploma",
+      school: "ICBT Campus",
+      
       color: C.amber,
       icon: "📜",
     },
+
+    {
+      year: "Extra",
+      degree: "Information Technology— NVQ Level 4",
+      school: "Vocational Training Authority",
+      color: C.amber,
+      icon: "📜",
+
+    }
+    
   ];
 
   return (
@@ -1215,6 +1264,17 @@ function Education() {
 }
 
 function Skills() {
+  const progressSkills = [
+    { name: "HTML", percent: 90, color: C.cyan },
+    { name: "CSS", percent: 85, color: C.pink },
+    { name: "JavaScript", percent: 80, color: C.amber },
+    { name: "React", percent: 75, color: C.blue },
+    { name: "Java", percent: 78, color: C.violet },
+    { name: "PHP", percent: 72, color: C.green },
+    { name: "MySQL", percent: 82, color: C.cyan },
+    { name: "MongoDB", percent: 70, color: C.pink },
+  ];
+
   const cats = [
     {
       title: "QA Skills",
@@ -1257,6 +1317,37 @@ function Skills() {
           title="Skills & Expertise"
           color={C.amber}
         />
+      </Reveal>
+
+      <Reveal delay={0.1}>
+        <div
+          className="glass"
+          style={{
+            padding: "2rem",
+            marginBottom: "2rem",
+            border: `1px solid ${C.cyan}22`,
+          }}
+        >
+          <h3
+            style={{
+              color: "#fff",
+              fontFamily: DISPLAY,
+              fontSize: "1.3rem",
+              marginBottom: "1.5rem",
+            }}
+          >
+            Skill Progress
+          </h3>
+
+          {progressSkills.map((skill) => (
+            <SkillProgressBar
+              key={skill.name}
+              name={skill.name}
+              percent={skill.percent}
+              color={skill.color}
+            />
+          ))}
+        </div>
       </Reveal>
 
       <div
@@ -1458,43 +1549,8 @@ function Projects() {
   );
 }
 
-function Journal() {
-  return (
-    <section id="journal" className="sec-fade" style={{ padding: "100px 8%" }}>
-      <Reveal>
-        <SectionHeader
-          label="PPW Module Reflection"
-          title="Reflective Journal"
-          color={C.pink}
-        />
-      </Reveal>
 
-      <Reveal delay={0.1}>
-        <div className="glass" style={{ padding: "3rem 3.5rem" }}>
-          {[
-            "The Professional Practice in the Workplace module helped me understand how technical knowledge, communication, teamwork, and professionalism work together in the real IT industry.",
-            "It improved my confidence in presenting myself professionally, planning my career, and identifying the skills I need to grow in Software Quality Assurance.",
-            "Through this learning process, I became more focused on building a career where I can contribute to software quality, reliability, and user satisfaction.",
-          ].map((p, i) => (
-            <p
-              key={i}
-              style={{
-                color: C.muted,
-                lineHeight: 1.95,
-                fontFamily: BODY,
-                fontSize: "0.97rem",
-                marginBottom: "1.2rem",
-                fontStyle: "italic",
-              }}
-            >
-              {p}
-            </p>
-          ))}
-        </div>
-      </Reveal>
-    </section>
-  );
-}
+
 
 function Career() {
   const steps = [
@@ -1749,7 +1805,6 @@ export default function App() {
       <Education />
       <Skills />
       <Projects />
-      <Journal />
       <Career />
       <Contact />
 
