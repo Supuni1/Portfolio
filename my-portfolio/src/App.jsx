@@ -724,11 +724,11 @@ function Career() {
 /* ── Contact ────────────────────────────────── */
 function Contact() {
   const contacts = [
-    { icon:"📞", value:"+94 71 737 3138",                color:C.cyan   },
+    { icon:"📞", value:"+94 71 737 3138",                color:C.cyan,   href:"tel:+94717373138" },
     { icon:"✉️", value:"supunidilhara1@gmail.com",       color:C.pink,   href:"mailto:supunidilhara1@gmail.com" },
-    { icon:"📍", value:"Kap-ela, Kandalama, Dambulla",   color:C.violet },
-    { icon:"💼", value:"linkedin.com/in/supuni-dilhara",  color:C.blue   },
-    { icon:"💻", value:"github.com/Supuni1",              color:C.green  },
+    { icon:"📍", value:"Kap-ela, Kandalama, Dambulla",   color:C.violet, href:"https://maps.google.com/?q=Kandalama,Dambulla" },
+    { icon:"💼", value:"linkedin.com/in/supuni-dilhara",  color:C.blue,   href:"https://www.linkedin.com/in/supuni-dilhara" },
+    { icon:"💻", value:"github.com/Supuni1",              color:C.green,  href:"https://github.com/Supuni1" },
   ];
   const refs = [
     { name:"Ms. H.M. Chathurika Rathnayake", role:"Asst. Manager Academic Affairs / Lecturer — SLIIT Kurunegala", contact:"0766042469 · chathurika.h@sliit.lk",  color:C.cyan },
