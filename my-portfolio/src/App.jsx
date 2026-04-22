@@ -812,7 +812,7 @@ export default function App() {
           WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", marginBottom:"0.6rem",
         }}>SD.</div>
         <p style={{ color:"rgba(255,255,255,0.22)", fontSize:"0.8rem", fontFamily:BODY }}>
-          © 2024 Supuni Dilhara · IT22169044 · SLIIT · PPW Portfolio Assessment
+          © 2024 Supuni Dilhara · IT22169044 · SLIIT 
         </p>
       </footer>
     </div>
