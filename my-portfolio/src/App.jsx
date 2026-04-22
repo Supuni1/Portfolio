@@ -1163,7 +1163,6 @@ function Education() {
       year: "2017",
       degree: "G.C.E. Ordinary Level",
       school: "Rangiri Dambulla Central College",
-      detail: "3 A's · 1 B · 4 C's · 1 S",
       color: C.violet,
       icon: "📖",
     },
