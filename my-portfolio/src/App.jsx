@@ -725,7 +725,7 @@ function Career() {
 function Contact() {
   const contacts = [
     { icon:"📞", value:"+94 71 737 3138",                color:C.cyan   },
-    { icon:"✉️", value:"supunidilhara1@gmail.com",       color:C.pink   },
+    { icon:"✉️", value:"supunidilhara1@gmail.com",       color:C.pink,   href:"mailto:supunidilhara1@gmail.com" },
     { icon:"📍", value:"Kap-ela, Kandalama, Dambulla",   color:C.violet },
     { icon:"💼", value:"linkedin.com/in/supuni-dilhara",  color:C.blue   },
     { icon:"💻", value:"github.com/Supuni1",              color:C.green  },
@@ -748,7 +748,11 @@ function Contact() {
               {contacts.map((c,i)=>(
                 <div key={i} style={{ display:"flex", alignItems:"center", gap:"1rem", padding:"0.8rem 0.4rem", borderBottom:i<contacts.length-1?"1px solid rgba(255,255,255,0.05)":"none" }}>
                   <div style={{ width:40, height:40, borderRadius:"50%", background:`${c.color}14`, border:`1px solid ${c.color}35`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"0.9rem", flexShrink:0, backdropFilter:"blur(8px)" }}>{c.icon}</div>
-                  <span style={{ color:C.muted, fontSize:"0.9rem", fontFamily:BODY }}>{c.value}</span>
+                  {c.href ? (
+                    <a href={c.href} style={{ color:C.muted, fontSize:"0.9rem", fontFamily:BODY, textDecoration:"none", transition:"color .2s" }} onMouseEnter={e=>e.currentTarget.style.color=c.color} onMouseLeave={e=>e.currentTarget.style.color=C.muted}>{c.value}</a>
+                  ) : (
+                    <span style={{ color:C.muted, fontSize:"0.9rem", fontFamily:BODY }}>{c.value}</span>
+                  )}
                 </div>
               ))}
             </div>
