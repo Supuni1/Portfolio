@@ -389,9 +389,7 @@ function Hero() {
 
           {/* floating badges */}
           {[
-            { label:"7 Projects",  color:C.cyan,   pos:{ top:"-10px",   left:"-78px"  }, anim:"floatA" },
-            { label:"SLIIT",       color:C.pink,   pos:{ bottom:"30px", left:"-92px"  }, anim:"floatB" },
-            { label:"IT22169044",  color:C.violet, pos:{ top:"28px",    right:"-100px"}, anim:"floatC" },
+            { label:"SLIIT",       color:C.pink,   pos:{ bottom:"30px", left:"-92px"  }, anim:"floatB" },  
             { label:"QA Focus",    color:C.amber,  pos:{ bottom:"-6px", right:"-76px" }, anim:"floatA" },
           ].map(b=>(
             <div key={b.label} style={{
