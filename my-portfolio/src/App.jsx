@@ -1148,7 +1148,6 @@ function Education() {
       year: "2022–Present",
       degree: "BSc (Hons) Information Technology",
       school: "SLIIT — Faculty of Computing",
-      detail: "Reg. No. IT22169044",
       color: C.cyan,
       icon: "🎓",
     },
