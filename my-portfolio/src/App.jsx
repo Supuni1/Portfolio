@@ -944,7 +944,7 @@ function About() {
     { k: "Phone", v: "+94 74 386 6430" },
     { k: "Email", v: "supunidilhara1@gmail.com" },
     { k: "Languages", v: "Sinhala · English" },
-  
+   
   ];
 
   return (
@@ -1268,6 +1268,7 @@ function Skills() {
     { name: "JavaScript", percent: 80, color: C.amber },
     { name: "React", percent: 75, color: C.blue },
     { name: "Java", percent: 78, color: C.violet },
+    
     { name: "PHP", percent: 72, color: C.green },
     { name: "MySQL", percent: 82, color: C.cyan },
     { name: "MongoDB", percent: 70, color: C.pink },
